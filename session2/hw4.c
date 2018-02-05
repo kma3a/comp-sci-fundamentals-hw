@@ -53,11 +53,10 @@ int calculateN (struct day current) {
  */
 
 int absoluteValue(int number) {
-  if ( number >=0 ) {
-    return number;
-  } else {
-    return -number;
+  if ( number <0 ) {
+    number = -number;
   }
+  return number;
 }
 
 /*
