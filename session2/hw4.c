@@ -14,10 +14,9 @@ struct day {
  */
 int yearModCalc ( int year , int month ) {
   if ( month <= 2) {
-    return year - 1;
-  } else {
-    return year;
+    year -= 1;
   }
+  return year;
 }
 
 /*
@@ -25,10 +24,12 @@ int yearModCalc ( int year , int month ) {
  */
 int monthModCalc ( int month ) {
   if (month <= 2) {
-    return month + 13;
+    month += 13;
   } else {
-    return month + 1;
+    month += 1;
   }
+
+  return month;
 }
 
 /*
@@ -66,14 +67,15 @@ int calculateOldMod(struct day current) {
   int month = current.month;
   int day = current.day;
   int year = current.year;
+  int mod = 0;
 
   if( (year < 1900 && year > 1800) || (year == 1800 && month > 3) || (year == 1800 && month == 3 && day >=1) || (year == 1900 && month < 2) || (year == 1900 && month == 2 && day <= 20)){
-    return 1;
+    mod += 1;
   } else if ( (year > 1700 && year < 1800) || ( year == 1700 && month > 3) || ( year == 1700 && month == 3 && day >=1) || (year == 1800 && month < 2) || ( year == 1800 && month == 2 && day <=28)){
-    return 2;
-  } else {
-    return 0;
+    mod += 2;
   }
+
+  return mod;
 }
 
 
