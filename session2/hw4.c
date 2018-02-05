@@ -91,12 +91,8 @@ void getDateDifference(void) {
 
   for(int i = 0; i <= 1; i++) {
     struct day userInput;
-    printf("What is the month in integer? \n");
-    scanf("%i", &userInput.month);
-    printf("What is the day in integer? \n");
-    scanf("%i", &userInput.day);
-    printf("What is the year in integer? \n");
-    scanf("%i", &userInput.year);
+    printf("What is the day in integer (mm/dd/yyyy)? \n");
+    scanf("%d/%d/%d", &userInput.month, &userInput.day, &userInput.year);
     
     yearMod += calculateOldMod(userInput);
 
