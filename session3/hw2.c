@@ -1,24 +1,23 @@
 #include <stdio.h>
 
 void removeString(char array[], int removeStart, int removeEnd){
-  char newArray[20];
-  int currentIndex = 0;
-
   for(int i = 0; array[i] != '\0'; ++i) {
-    if( i < removeStart || i > removeStart + removeEnd -1) {
-      newArray[currentIndex] = array[i];
-      ++currentIndex;
+    if(array[i+removeEnd] == '\0'){
+      array[i] = '\0';
+      return;
+    }
+    if( i >= removeStart) {
+      array[i] = array[i+removeEnd];
     }
   }
-
-  newArray[currentIndex] = '\0';
-
-  printf("%s", newArray);
 
 }
 
 int main(void){
+  char text[] = "the wrong son";
 
-  removeString("the wrong son", 4, 6);
+  removeString(text, 4, 6);
+  printf("%s", text);
   
+  return 0;
 }

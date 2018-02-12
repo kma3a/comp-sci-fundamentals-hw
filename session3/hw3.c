@@ -18,10 +18,11 @@ void insertString(char array[], char insertChar[], int insertStart){
 
   newArray[currentIndex] = '\0';
 
-  printf("%s", newArray);
+  printf("%s \n", newArray);
 }
 
 int main(void) {
-  insertString("the wrong son", "per", 10);
+  char text[] = "the wrong son";
+  insertString(text, "per", 10);
   return 0;
 }
