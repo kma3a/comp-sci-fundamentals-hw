@@ -1,7 +1,17 @@
 #include <stdio.h>
 
+int getLength(char string[]) {
+  int index = 0;
+  while( string[index] != '\0') {
+    ++index;
+  }
+  return index;
+}
+
 void insertString(char array[], char insertChar[], int insertStart){
-  char newArray[20];
+  int length = getLength(array);
+  int insertLength = getLength(insertChar);
+  char newArray[length + insertLength + 1];
   int currentIndex =0;
 
   for(int i =0; array[i] != '\0'; ++i){

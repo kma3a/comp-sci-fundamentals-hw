@@ -32,7 +32,9 @@ void removeString(char array[], int removeStart, int removeEnd){
 }
 
 void insertString(char array[], char insertChar[], int insertStart){
-  char newArray[20];
+  int length = getLength(array);
+  int insertLength = getLength(insertChar);
+  char newArray[length + insertLength + 1];
   int currentIndex =0;
 
   for(int i =0; array[i] != '\0'; ++i){
@@ -49,7 +51,7 @@ void insertString(char array[], char insertChar[], int insertStart){
 
   newArray[currentIndex] = '\0';
 
-  printf("%s", newArray);
+  printf("%s \n", newArray);
 }
 
 int getLength(char string[]) {
@@ -63,6 +65,7 @@ int getLength(char string[]) {
 void replaceString(char text[], char string1[], char string2[]){
   int stringLength = getLength(string1);
   int index = findString(text, string1);
+  printf("I ma the lenght: %d \n", stringLength);
   removeString(text, index, stringLength);
   insertString(text, string2, index);
 }
