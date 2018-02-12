@@ -1,4 +1,11 @@
 #include <stdio.h>
+int getLength(char string[]) {
+  int index = 0;
+  while( string[index] != '\0') {
+    ++index;
+  }
+  return index;
+}
 
 int findString(char array[], char searchString[]){
   int searchIndex = -1;
@@ -54,13 +61,6 @@ void insertString(char array[], char insertChar[], int insertStart){
   printf("%s \n", newArray);
 }
 
-int getLength(char string[]) {
-  int index = 0;
-  while( string[index] != '\0') {
-    ++index;
-  }
-  return index;
-}
 
 void replaceString(char text[], char string1[], char string2[]){
   int stringLength = getLength(string1);
