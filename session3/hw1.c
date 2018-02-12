@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int findString(char array[], char searchString[]){
-  int searchIndex = 0;
+  int searchIndex = -1;
   int searchLetter = 0;
   for(int i = 0; array[i] != '\0' && searchString[searchLetter] != '\0'; ++i) {
     if ( array[i] == searchString[searchLetter]) {
@@ -9,6 +9,9 @@ int findString(char array[], char searchString[]){
         searchIndex = i;
       }
       searchLetter++;
+    } else if(searchIndex >=0 && array[i] != searchString[searchLetter]){
+      searchLetter = 0;
+      searchIndex = -1;
     }
   }
   return searchIndex;
@@ -20,6 +23,13 @@ int main(void){
 
   index = findString("a chatterbox", "hat");
 
-  printf("I am the beginning index of hat: %i\n", index);
+  printf("I am the beginning index of dog: %i\n", index);
+
+  index = findString("a chatterbox", "dog");
   
+  printf("I am the beginning index of dog: %i\n", index);
+
+  index = findString("a chatterbox", "boy");
+
+  printf("I am the beginning index of boy: %i\n", index);
 }
