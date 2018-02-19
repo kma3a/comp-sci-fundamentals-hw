@@ -1,6 +1,5 @@
 #include <stdio.h>
 #define IS_NEWLINE(x) ((x) == '\n') 
-#define IS_EVEN(x) ((x) % 2 == 0)
 
 
 int getOneLine(char line[], FILE *file, int index, int startIndex, int endIndex) {
