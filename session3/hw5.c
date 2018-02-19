@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 /*
- * struct for the day
+ * struct for the double link list
  */
 struct link {
   int value;
