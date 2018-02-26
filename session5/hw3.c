@@ -73,6 +73,7 @@ char *replaceString(char *oString, char *replaceText, char *newText){
     newString = "Could not find string";
   }
 
+
   return newString;
 }
 
@@ -81,6 +82,7 @@ int main (void) {
   char *newString;
   newString = replaceString("I am one cool", "one cool", "number one");
   printf("%s \n", newString);
+  free(newString);
 
   return 0;
 }
