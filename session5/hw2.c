@@ -36,5 +36,6 @@ int main (void) {
   char *newString;
   newString = insertString("I am father", " the best", 4);
   printf(" %s \n", newString);
+  free(newString);
   return 0;
 }

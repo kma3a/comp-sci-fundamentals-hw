@@ -28,6 +28,6 @@ int main (void) {
   char *newString;
   newString = removeString("I am your father", 4, 4);
   printf("%s \n", newString);
-
+  free(newString);
   return 0;
 }
