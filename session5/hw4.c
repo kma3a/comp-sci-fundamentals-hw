@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 /*
  * struct for the double link list
@@ -9,13 +10,17 @@ struct link {
   struct link *previous;
 };
 
-void insertEntry(struct link *prior_link, struct link *addition){
+struct link *insertEntry(struct link *prior_link, int newValue){
+  struct link *newLink;
+  newLink = (struct link *)calloc( 1000,sizeof(struct link));
+  newLink->value = newValue;
+  newLink->previous = prior_link;
+  newLink->next = prior_link->next;
 
-  addition->next = prior_link->next;
-  addition->previous = prior_link;
+  prior_link->next->previous = newLink;
+  prior_link->next = newLink;
 
-  prior_link->next = addition;
-
+  return prior_link->next;
 }
 
 void removeEntry(struct link *removal){
@@ -26,14 +31,44 @@ void removeEntry(struct link *removal){
     removal->previous->next = (struct link *) 0;
   }
 
+  free(removal);
 
 }
+
+void readDoubleLinks(struct link *list_pointer){
+  int end =0;
+
+  printf("\n forwards \n");
+  while(!end) {
+    printf("%i, ", list_pointer->value);
+    if(list_pointer->next == (struct link *) 0){
+      end = 1;
+    } else {
+      list_pointer = list_pointer->next;
+    }
+  }
+
+  end = 0;
+  printf("\n Backwards \n");
+
+  while(!end) {
+    printf("%i, ", list_pointer->value);
+    if(list_pointer->previous == (struct link *) 0){
+      end = 1;
+    } else {
+      list_pointer = list_pointer->previous;
+    }
+  }
+}
+
+
 
 int main(void){
   struct link one, two, three;
   struct link *list_pointer = &one;
-  struct link new;
+  struct link *new;
 
+  one.previous = (struct link *) 0;
   one.value = 2;
   one.next = &two;
 
@@ -45,8 +80,13 @@ int main(void){
   three.value = 66;
   three.next = (struct link *) 0;
 
-  //insertEntry(&two, );
-  //removeEntry(&three);
+  new = insertEntry(&two, 5);
+  readDoubleLinks(list_pointer);
+  removeEntry(new);
+  readDoubleLinks(list_pointer);
 
+  
+  printf("\n done \n");
+ 
   return 0;
 }
