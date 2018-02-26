@@ -1,6 +1,7 @@
 #include <stdio.h>
 #define IS_UPPER_CASE(x) ((x) >= 'A' && (x) <= 'Z')
 
+/*
 int main(void){
 
   printf("is x uppercase? %i \n", IS_UPPER_CASE('x'));
@@ -11,3 +12,4 @@ int main(void){
   return 0;
 
 }
+*/
