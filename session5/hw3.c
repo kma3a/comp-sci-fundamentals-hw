@@ -29,7 +29,7 @@ int findString(char array[], char searchString[]){
 
 
 char *insertString(char *oString, char *addString, int addIndex){
-  char *finishedString = (char *) malloc(stringLength(oString) + stringLength(addString) +1);
+  char *finishedString = (char *) malloc(stringLength(oString) + stringLength(addString));
   int index = 0, finishedIndex = 0;
   while (oString[index] != '\0' || index == addIndex) {
     if(index == addIndex) {
@@ -44,7 +44,7 @@ char *insertString(char *oString, char *addString, int addIndex){
     index++;
     finishedIndex++;
   }
-  finishedString[finishedIndex+1] = '\0';
+  finishedString[finishedIndex] = '\0';
   return finishedString;
 
 }
@@ -64,7 +64,7 @@ char *removeString(char *string, int startIndex, int numRemoved){
 }
 
 char *replaceString(char *oString, char *replaceText, char *newText){
-  char *newString = (char *) malloc(stringLength(oString) - stringLength(replaceText) + stringLength(newText) + 1);
+  char *newString = (char *) malloc(stringLength(oString) - stringLength(replaceText) + stringLength(newText));
   int replaceIndex = findString(oString, replaceText);
   if(replaceIndex >= 0 ) {
     newString = removeString(oString, replaceIndex, stringLength(replaceText));
