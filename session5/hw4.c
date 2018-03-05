@@ -12,7 +12,7 @@ struct link {
 
 struct link *insertEntry(struct link *prior_link, int newValue){
   struct link *newLink;
-  newLink = (struct link *)calloc( 1000,sizeof(struct link));
+  newLink = (struct link *)calloc( 1,sizeof(struct link));
   newLink->value = newValue;
   newLink->previous = prior_link;
   newLink->next = prior_link->next;
