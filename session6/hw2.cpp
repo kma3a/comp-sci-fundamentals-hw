@@ -6,8 +6,23 @@
 
 #include <iostream>
 #include <string>
+using namespace std;
+
+struct coord
+{
+  int x;
+  int y;
+  int z;
+};
 
 int main()
 {
+  coord point;
+
+  point.x = 12;
+  point.y = 32;
+  point.z = 211;
+
+  cout << "x: " << point.x << " y: " << point.y << " z: " << point.z << endl;
   return 0;
 }
