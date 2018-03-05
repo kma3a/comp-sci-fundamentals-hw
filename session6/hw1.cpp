@@ -23,7 +23,7 @@ struct dairy
   int protein;
   int fat;
   int carbs;
-  void init(char iName[], int iWeight, int iCalories, int iProtein, int iFat, int iCarbs) { strcpy(name, iName); weight = iWeight; calories = iCalories; protein = iProtein; fat = iFat; carbs = iCarbs;};
+  //void init(char iName[], int iWeight, int iCalories, int iProtein, int iFat, int iCarbs) { strcpy(name, iName); weight = iWeight; calories = iCalories; protein = iProtein; fat = iFat; carbs = iCarbs;};
 };
 
 double getWeight(dairy cheese, int weight) {
@@ -38,8 +38,15 @@ int main()
 {
   dairy american;
   char cheeseName[60] = "American";
+  
+  strcpy(american.name, cheeseName);
+  american.weight = 25;
+  american.calories = 375;
+  american.protein = 5;
+  american.fat = 8;
+  american.carbs = 0;
 
-  american.init( cheeseName, 25, 375, 5, 8, 0);
+  //american.init( cheeseName, 25, 375, 5, 8, 0);
 
   int tenGrams =  getWeight(american, 10);
 
