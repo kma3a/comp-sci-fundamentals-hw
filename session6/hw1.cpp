@@ -13,8 +13,38 @@
 
 #include <iostream>
 #include <string>
+using namespace std;
+
+struct dairy
+{
+  char name[60];
+  int weight;
+  int calories;
+  int protein;
+  int fat;
+  int carbs;
+  void init(char iName[], int iWeight, int iCalories, int iProtein, int iFat, int iCarbs) { strcpy(name, iName); weight = iWeight; calories = iCalories; protein = iProtein; fat = iFat; carbs = iCarbs;};
+};
+
+double getWeight(dairy cheese, int weight) {
+  double weight1 = weight;
+  double cheeseWeight = cheese.weight;
+  double weightProtion = weight1 / cheeseWeight;
+  return cheese.calories * weightProtion;
+
+}
 
 int main()
 {
+  dairy american;
+  char cheeseName[60] = "American";
+
+  american.init( cheeseName, 25, 375, 5, 8, 0);
+
+  int tenGrams =  getWeight(american, 10);
+
+  cout << tenGrams << endl;
+
+
   return 0;
 }
