@@ -15,28 +15,22 @@ struct sister {
 
 
 Answer:
-The a is not needed so thtat is the first to go, The second is that before a struct can be used it needs to be decalinred so you can't have something with con dependencies be declainred at the same time.
+The a is not needed so thtat is the first to go, The second is that before a struct can be used it needs to be decalinred so you can't have something with con dependencies be declainred at the same time.  You also don't need the struct in the declaration.
  */
 
 #include <iostream>
 #include <string>
 
-struct sibling {
+struct brother {
   char name[20];
   int age;
-};
-
-
-struct borther {
-  char name[20];
-  int age;
-  struct sibling sib;
+  sister sib;
 };
 
 struct sister {
   char name[20];
   int age;
-  //struct brother sib;
+  brother sib;
 };
 
 
