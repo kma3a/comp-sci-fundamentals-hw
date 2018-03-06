@@ -64,6 +64,25 @@ void deck::deal(int n, int pos, card* hand)
   }
 }
 
+void cardSwap(card *a, card *b) {
+  card temp = *a;
+  *a = *b;
+  *b = temp;
+}
+
+void sort_by_pips(card hand[], int  length){
+  for( int j = 0; j < length; j++){
+    for(int i = j; i < length; i++){
+      int handOneVal = hand[i].p.getpip() == 1 ? 14 : hand[i].p.getpip();
+      int handTwoVal = hand[j].p.getpip() == 1 ? 14 : hand[j].p.getpip();
+      if( handOneVal > handTwoVal){
+        cardSwap(&hand[i], &hand[j]);
+      }
+    }
+  }
+
+}
+
 int main()
 {
   card one_hand[5];
@@ -85,10 +104,24 @@ int main()
     dk.deal(nc, i, one_hand);
   }
 
+  one_hand[3].assign(0);
+
+
+  for (i =0; i < nc; ++i) {
+    one_hand[i].p.print();
+    cout << " " << endl;
+  }
+
+
+  cout << " sort " << endl;
+
+  sort_by_pips(one_hand, 5);
+
   
 
   for (i =0; i < nc; ++i) {
-    one_hand[i].print();
+    one_hand[i].p.print();
+    cout << " " << endl;
   }
 
   
