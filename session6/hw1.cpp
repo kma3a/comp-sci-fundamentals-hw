@@ -26,10 +26,10 @@ struct dairy
   //void init(char iName[], int iWeight, int iCalories, int iProtein, int iFat, int iCarbs) { strcpy(name, iName); weight = iWeight; calories = iCalories; protein = iProtein; fat = iFat; carbs = iCarbs;};
 };
 
-double getWeight(dairy cheese, int weight) {
-  double weight1 = weight;
-  double cheeseWeight = cheese.weight;
-  double weightProtion = weight1 / cheeseWeight;
+float getWeight(dairy cheese, int weight) {
+  float weight1 = weight;
+  float cheeseWeight = cheese.weight;
+  float weightProtion = weight1 / cheeseWeight;
   return cheese.calories * weightProtion;
 
 }
