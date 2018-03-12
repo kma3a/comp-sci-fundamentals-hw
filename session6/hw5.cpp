@@ -30,16 +30,44 @@
 
 #include <iostream>
 #include <string>
+using namespace std;
 
 class deque {
   public:
-    void reset() { top=bottom = max_length/2; top--;}
+    void reset() { top = bottom = 20/2; top--;}
+    int full() { return top == 20-1 && bottom == 0;}
+    void push_t(char a) {if(!full()){top++; s[top] = a;}}
+    void push_b(char b) { if(!full()){bottom--; s[bottom] = b;}}
+    void print_stack() { if(!empty()) { int i = bottom; do{ cout << s[i] << endl; i++;}while(i<=top);}}
+    int empty() {return top < bottom;}
   private:
-    char s[max_len];
+    char s[20];
     int bottom, top;
 };
 
 int main()
 {
+  deque a;
+
+  a.reset();
+
+  cout << "Empty? " << endl;
+  cout << a.empty() << endl;
+
+  cout << "full? " << endl;
+  cout << a.full() << endl;
+
+  a.push_t('a');
+
+  a.print_stack();
+
+  cout << "next " << endl;
+
+  a.push_b('b');
+  a.print_stack();
+
+  cout << "Empty? " << endl;
+  cout << a.empty() << endl;
+
   return 0;
 }
