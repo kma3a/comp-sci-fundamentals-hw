@@ -34,8 +34,8 @@ using namespace std;
 
 class deque {
   public:
-    void reset() { top = bottom = 20/2; top--;}
-    bool full() { return top == 20-1 && bottom == 0;}
+    void reset() { top = bottom = max_length/2; top--;}
+    bool full() { return top == max_length-1 && bottom == 0;}
     void push_t(char a) {if(!full()){top++; s[top] = a;}}
     void push_b(char b) { if(!full()){bottom--; s[bottom] = b;}}
     char pop_t() { return s[top--];}
@@ -45,7 +45,8 @@ class deque {
     void print_stack() { if(!empty()) { int i = bottom; do{ cout << s[i] << endl; i++;}while(i<=top);}}
     bool empty() {return top < bottom;}
   private:
-    char s[20];
+    enum { max_length = 100;}
+    char s[max_length];
     int bottom, top;
 };
 
