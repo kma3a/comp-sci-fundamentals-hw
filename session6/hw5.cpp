@@ -35,13 +35,15 @@ using namespace std;
 class deque {
   public:
     void reset() { top = bottom = 20/2; top--;}
-    int full() { return top == 20-1 && bottom == 0;}
+    bool full() { return top == 20-1 && bottom == 0;}
     void push_t(char a) {if(!full()){top++; s[top] = a;}}
     void push_b(char b) { if(!full()){bottom--; s[bottom] = b;}}
     char pop_t() { return s[top--];}
     char pop_b() { return s[bottom++];}
+    char bottom_of() { return s[bottom];}
+    char top_of() { return s[top];}
     void print_stack() { if(!empty()) { int i = bottom; do{ cout << s[i] << endl; i++;}while(i<=top);}}
-    int empty() {return top < bottom;}
+    bool empty() {return top < bottom;}
   private:
     char s[20];
     int bottom, top;
@@ -74,6 +76,28 @@ int main()
 
   cout << " pop bottom "<< endl;
   cout << a.pop_b() << endl;
+  cout << " print stack "<< endl;
+  a.print_stack();
+
+  cout << "Empty? " << endl;
+  cout << a.empty() << endl;
+
+
+  a.push_t('a');
+  a.push_t('c');
+  a.push_t('1');
+  a.push_t('2');
+  a.push_b('b');
+  a.push_b('8');
+  a.push_b('9');
+  cout << " print stack "<< endl;
+  a.print_stack();
+
+  cout << " top "<< endl;
+  cout << a.top_of() << endl;
+
+  cout << " bottom "<< endl;
+  cout << a.bottom_of() << endl;
 
   cout << "Empty? " << endl;
   cout << a.empty() << endl;
