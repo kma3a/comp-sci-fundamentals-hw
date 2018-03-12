@@ -13,6 +13,7 @@ struct slistelem {
 class slist {
   public:
     slist(const char* c = "");
+    ~slist() { release();}
     void prepend(char c);
     void del();
     slistelem* first() const { return h;}

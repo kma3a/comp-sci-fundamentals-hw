@@ -14,13 +14,14 @@ struct slistelem {
 class slist {
   public:
     slist(const char* c);
+    ~slist() { release();}
     void prepend(char c);
     void del();
     slistelem* first() const { return h;}
     void print() const;
     void release();
-    int length();
-    int count_c(char c);
+    int length() const;
+    int count_c(char c) const;
     void append(slist &e);
   private:
     slistelem* h;
@@ -36,23 +37,26 @@ void slist::append(slist &e) {
   e.h = 0;
 };
 
+
 //slist constructor whose initializer is a char* string
 slist::slist(const char* c) {
-  for (int i =0; c[i] != 0; c++) {
-    slistelem* temp = new slistelem;
-    temp -> data = c[i];
-    temp -> next = 0;
-    if (h == 0){
-      h = temp;
-    } else {
-      temp -> next = h;
-      h = temp;
-    }
+  h = 0;
+  for (int i =0; c[i] != '\0'; i++) {
+    prepend(c[i]);
   }
 };
 
+
+void slist::prepend(char c) {
+  slistelem* temp = new slistelem;
+  //assert( temp !=0);
+  temp -> next = h;
+  temp -> data = c;
+  h = temp;
+}
+
 //length returns the length of the slist
-int slist::length() {
+int slist::length() const {
   int count = 0;
   slistelem* temp = h;
   while (temp != 0) {
@@ -64,7 +68,7 @@ int slist::length() {
 };
 
 //return number of elements whose data value is c
-int slist::count_c(char c) {
+int slist::count_c(char c) const {
   int count = 0;
   slistelem* temp = h;
   while (temp != 0) {
