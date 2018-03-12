@@ -44,7 +44,6 @@ int slist::length() {
   int count = 0;
   slistelem* temp = h;
   while (temp != 0) {
-
     temp = temp -> next;
     count++;
   }
@@ -56,15 +55,14 @@ int slist::length() {
 int slist::count_c(char c) {
   int count = 0;
   slistelem* temp = h;
-  while (temp !=0) {
-    temp = temp ->next;
+  while (temp != 0) {
     if(temp->data == c) {
       count++;
     }
+    temp = temp -> next;
   }
 
   return count;
-
 };
 
 void slist::release() {
@@ -82,8 +80,10 @@ void slist::del() {
 int main (void) {
   slist world("Hello");
 
-  cout << " length" << endl;
-  cout << world.length() << endl;
+  //cout << " length" << endl;
+  //cout << world.length() << endl;
+  cout << "# of l" << endl;
+  cout << world.count_c('l') << endl;
 
   return 0;
 }
