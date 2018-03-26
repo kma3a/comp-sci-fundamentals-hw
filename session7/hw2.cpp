@@ -1,6 +1,7 @@
 /*
  * write a memeberfunction append() that will add a list to the end of the implicit list argument;
- * then clear the appebded slist by zeroing the head;
+ * then clear the appended slist by zeroing the head;
+ * void slist::append(slist& e);
  */
 #include <iostream>
 #include <string>
@@ -13,6 +14,7 @@ struct slistelem {
 
 class slist {
   public:
+    slist() : h(0) {}
     slist(const char* c);
     ~slist() { release();}
     void prepend(char c);
@@ -20,78 +22,85 @@ class slist {
     slistelem* first() const { return h;}
     void print() const;
     void release();
-    int length() const;
-    int count_c(char c) const;
-    void append(slist &e);
+    int length();
+    int count_c(char c);
+    void append(slist& e);
   private:
     slistelem* h;
 };
 
-//appends a new list to the current one
-void slist::append(slist &e) {
-  slistelem* temp = h;
-  while (temp->next !=0) {
-    temp = temp -> next;
-  }
-  temp -> next = e.h;
-  e.h = 0;
-};
-
-
-//slist constructor whose initializer is a char* string
 slist::slist(const char* c) {
   h = 0;
-  for (int i =0; c[i] != '\0'; i++) {
+  for(int i = 0; c[i] != 0; i++){
     prepend(c[i]);
   }
-};
+}
+
+int slist::length() {
+  slistelem* temp = h;
+  int length = 1;
+  while (temp != 0) {
+    length++;
+    temp = temp -> next;
+  }
+  return length;
+}
+
+
+int slist::count_c(char c) {
+  slistelem* temp = h;
+  int length = 0;
+  while (temp != 0) {
+    if(temp-> data == c) {
+      length++;
+    }
+    temp = temp -> next;
+  }
+  return length;
+
+}
 
 
 void slist::prepend(char c) {
   slistelem* temp = new slistelem;
-  //assert( temp !=0);
+  //assert(temp != 0);
   temp -> next = h;
   temp -> data = c;
   h = temp;
 }
 
-//length returns the length of the slist
-int slist::length() const {
-  int count = 0;
-  slistelem* temp = h;
-  while (temp != 0) {
-    temp = temp -> next;
-    count++;
+void slist::append(slist& e) {
+  slistelem* last = h;
+  while (last -> next != 0) {
+    last = last -> next;
   }
 
-  return count;
-};
-
-//return number of elements whose data value is c
-int slist::count_c(char c) const {
-  int count = 0;
-  slistelem* temp = h;
-  while (temp != 0) {
-    if(temp->data == c) {
-      count++;
-    }
-    temp = temp -> next;
-  }
-
-  return count;
-};
-
-void slist::release() {
-  while (h!=0) {
-    del();
-  }
-};
+  cout << "last data " << last -> data << endl;
+  cout << "e first " << e.first() << endl;
+  last -> next = e.h;
+  e.h = 0;
+}
 
 void slist::del() {
   slistelem* temp = h;
   h = h -> next;
   delete temp;
-};
+}
+
+void slist::print() const {
+  slistelem* temp = h;
+  while (temp != 0) {
+    cout << temp -> data << " -> ";
+    temp = temp -> next; 
+  }
+  cout << "\n" << endl;
+}
+
+void slist::release() {
+  while( h != 0) {
+    del();
+  }
+}
 
 int main (void) {
   slist world("olleH");
@@ -99,8 +108,8 @@ int main (void) {
 
   cout << "append" << endl;
   world.append(dlrow);
-  //cout << world.length() << endl;
-  cout << dlrow.length() << endl;
+  world.print();
+  dlrow.print();
 
 
   return 0;
