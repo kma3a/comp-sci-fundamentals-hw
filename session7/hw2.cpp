@@ -5,6 +5,7 @@
  */
 #include <iostream>
 #include <string>
+#include <assert.h>
 using namespace std;
 
 struct slistelem {
@@ -63,7 +64,7 @@ int slist::count_c(char c) {
 
 void slist::prepend(char c) {
   slistelem* temp = new slistelem;
-  //assert(temp != 0);
+  assert(temp != 0);
   temp -> next = h;
   temp -> data = c;
   h = temp;
