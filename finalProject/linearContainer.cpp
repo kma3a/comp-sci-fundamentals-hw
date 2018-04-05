@@ -16,16 +16,20 @@ class LinearContainer {
   public:
     LinearContainer() : maxSize(10), currentCount(0), start(0) {}
     LinearContainer(int num);
+    ~LinearContainer() { release();}
     void print();
     void push(char c);
     bool is_empty();
     bool is_full();
+    void release();
+    void del();
     containerElem* pop();
   private:
     int maxSize;
     int currentCount;
     containerElem* start;
 };
+
 
 LinearContainer::LinearContainer(int num) {
   maxSize = num;
@@ -81,6 +85,19 @@ bool LinearContainer::is_empty() {
 
 bool LinearContainer::is_full() {
   return currentCount == maxSize;
+}
+
+void LinearContainer::release(){
+  while (start != 0 ) {
+    del();
+  }
+}
+
+void LinearContainer::del(){
+  assert(start!=0);
+  containerElem* temp = start;
+  start = start -> next;
+  delete temp;
 }
 
 int main (void) {
