@@ -44,7 +44,7 @@ void LinearContainer::print() {
 }
 
 void LinearContainer::push(char c) {
-  assert( currentCount != maxSize );
+  assert( !is_full() );
   containerElem* temp = new containerElem(c);
   containerElem* last = start;
   while ( last -> next != 0) {
@@ -55,7 +55,7 @@ void LinearContainer::push(char c) {
 }
 
 containerElem* LinearContainer::pop() {
-  assert(currentCount !=0);
+  assert( !is_empty());
   containerElem* last = start;
   containerElem* secondLast = 0;
   while ( last -> next != 0) {
