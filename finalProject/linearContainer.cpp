@@ -14,8 +14,8 @@ struct containerElem {
 
 class LinearContainer {
   public:
-    LinearContainer() : currentCount(0), maxSize(100), start(0) {}
-    LinearContainer(int num, char c);
+    LinearContainer() : maxSize(10), currentCount(0), start(0) {}
+    LinearContainer(int num);
     void print();
     void push(char c);
     bool is_empty();
@@ -27,11 +27,10 @@ class LinearContainer {
     containerElem* start;
 };
 
-LinearContainer::LinearContainer(int num, char c) {
-  containerElem* temp = new containerElem(c);
+LinearContainer::LinearContainer(int num) {
   maxSize = num;
-  start = temp;
-  currentCount = 1;
+  start = 0;
+  currentCount = 0;
 }
 
 void LinearContainer::print() {
@@ -47,10 +46,14 @@ void LinearContainer::push(char c) {
   assert( !is_full() );
   containerElem* temp = new containerElem(c);
   containerElem* last = start;
-  while ( last -> next != 0) {
-    last = last -> next;
+  if (start == 0 ) {
+    start = temp;
+  } else {
+    while ( last -> next != 0) {
+      last = last -> next;
+    }
+    last -> next = temp;
   }
-  last -> next = temp;
   currentCount++;
 }
 
@@ -81,18 +84,26 @@ bool LinearContainer::is_full() {
 }
 
 int main (void) {
-  LinearContainer list(3, 'h');
+  LinearContainer list;
 
-  list.push('i');
+  list.push('h');
+  list.push('e');
+  list.push('l');
+  list.push('l');
+  list.push('o');
+  list.push(' ');
+  list.push('y');
+  list.push('o');
+  list.push('u');
   cout << "full 1 " << list.is_full()  << endl;
   list.push('!');
   cout << "full 2 " << list.is_full()  << endl;
+  list.print();
   containerElem* popElem = list.pop();
   cout << popElem -> data << endl;
   list.print();
   bool empty = list.is_empty();
   cout << "empty 1 " << empty  << endl;
-  list.pop();
   list.pop();
   empty = list.is_empty();
   cout << "empty 2 " << empty  << endl;
