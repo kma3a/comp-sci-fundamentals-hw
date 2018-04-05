@@ -38,6 +38,7 @@ LinearContainer::LinearContainer(int num) {
 }
 
 void LinearContainer::print() {
+  assert(!is_empty());
   containerElem* temp = start;
   while ( temp != 0) {
     cout << temp -> data << " -> ";
@@ -71,10 +72,9 @@ containerElem* LinearContainer::pop() {
   }
   if(secondLast == 0) {
     start = 0;
-    currentCount = 0;
-    return last;
+  } else {
+    secondLast -> next = 0;
   }
-  secondLast -> next = 0;
   currentCount--;
   return last;
 }
@@ -121,6 +121,14 @@ int main (void) {
   list.print();
   bool empty = list.is_empty();
   cout << "empty 1 " << empty  << endl;
+  list.pop();
+  list.pop();
+  list.pop();
+  list.pop();
+  list.pop();
+  list.pop();
+  list.pop();
+  list.pop();
   list.pop();
   empty = list.is_empty();
   cout << "empty 2 " << empty  << endl;
