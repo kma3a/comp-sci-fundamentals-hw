@@ -19,6 +19,7 @@ class LinearContainer {
     void print();
     void push(char c);
     bool is_empty();
+    bool is_full();
     containerElem* pop();
   private:
     int maxSize;
@@ -75,16 +76,23 @@ bool LinearContainer::is_empty() {
   return currentCount == 0;
 }
 
+bool LinearContainer::is_full() {
+  return currentCount == maxSize;
+}
+
 int main (void) {
   LinearContainer list(3, 'h');
 
-  list.push('e');
-  list.print();
+  list.push('i');
+  cout << "full 1 " << list.is_full()  << endl;
+  list.push('!');
+  cout << "full 2 " << list.is_full()  << endl;
   containerElem* popElem = list.pop();
   cout << popElem -> data << endl;
   list.print();
   bool empty = list.is_empty();
   cout << "empty 1 " << empty  << endl;
+  list.pop();
   list.pop();
   empty = list.is_empty();
   cout << "empty 2 " << empty  << endl;
