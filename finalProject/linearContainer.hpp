@@ -24,7 +24,7 @@ class LinearContainer {
     void release();
     void del();
     containerElem<T>* pop();
-  private:
+  protected:
     int maxSize;
     int currentCount;
     containerElem<T>* start;
