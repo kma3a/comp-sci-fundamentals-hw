@@ -1,43 +1,47 @@
 #include <iostream>
 #include <assert.h>
 
+template<class T>
 struct containerElem {
-  containerElem(char d, containerElem* n = 0) {
+  containerElem(T d, containerElem<T>* n = 0) {
     data = d;
     next = n;
   }
-  char data;
-  containerElem* next;
+  T data;
+  containerElem<T>* next;
 };
 
+template<class T>
 class LinearContainer {
   public:
     LinearContainer() : maxSize(10), currentCount(0), start(0) {}
     LinearContainer(int num);
     ~LinearContainer() { release();}
     void print();
-    void push(char c);
+    void push(T c);
     bool is_empty();
     bool is_full();
     void release();
     void del();
-    containerElem* pop();
+    containerElem<T>* pop();
   private:
     int maxSize;
     int currentCount;
-    containerElem* start;
+    containerElem<T>* start;
 };
 
 
-LinearContainer::LinearContainer(int num) {
+template <class T>
+LinearContainer<T>::LinearContainer(int num) {
   maxSize = num;
   start = 0;
   currentCount = 0;
 }
 
-void LinearContainer::print() {
+template <class T>
+void LinearContainer<T>::print() {
   assert(!is_empty());
-  containerElem* temp = start;
+  containerElem<T>* temp = start;
   while ( temp != 0) {
     std::cout << temp -> data << " -> ";
     temp = temp -> next;
@@ -45,10 +49,11 @@ void LinearContainer::print() {
   std::cout << "n" << std::endl;
 }
 
-void LinearContainer::push(char c) {
+template <class T>
+void LinearContainer<T>::push(T c) {
   assert( !is_full() );
-  containerElem* temp = new containerElem(c);
-  containerElem* last = start;
+  containerElem<T>* temp = new containerElem<T>(c);
+  containerElem<T>* last = start;
   if (start == 0 ) {
     start = temp;
   } else {
@@ -60,10 +65,11 @@ void LinearContainer::push(char c) {
   currentCount++;
 }
 
-containerElem* LinearContainer::pop() {
+template <class T>
+containerElem<T>* LinearContainer<T>::pop() {
   assert( !is_empty());
-  containerElem* last = start;
-  containerElem* secondLast = 0;
+  containerElem<T>* last = start;
+  containerElem<T>* secondLast = 0;
   while ( last -> next != 0) {
     secondLast = last;
     last = last -> next;
@@ -77,23 +83,27 @@ containerElem* LinearContainer::pop() {
   return last;
 }
 
-bool LinearContainer::is_empty() {
+template <class T>
+bool LinearContainer<T>::is_empty() {
   return currentCount == 0;
 }
 
-bool LinearContainer::is_full() {
+template <class T>
+bool LinearContainer<T>::is_full() {
   return currentCount == maxSize;
 }
 
-void LinearContainer::release(){
+template <class T>
+void LinearContainer<T>::release(){
   while (start != 0 ) {
     del();
   }
 }
 
-void LinearContainer::del(){
+template <class T>
+void LinearContainer<T>::del(){
   assert(start!=0);
-  containerElem* temp = start;
+  containerElem<T>* temp = start;
   start = start -> next;
   delete temp;
 }
