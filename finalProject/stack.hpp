@@ -1,6 +1,8 @@
 #include <iostream>
 #include <assert.h>
 #include "linearContainer.hpp"
+#ifndef STACK_HPP
+#define STACK_HPP
 
 template<class T>
 class Stack : public LinearContainer<T> {
@@ -49,3 +51,4 @@ void Stack<T>::copy() {
   this -> start = newContainer;
 }
 
+#endif //STACK_HPP

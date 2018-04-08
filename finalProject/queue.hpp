@@ -1,6 +1,8 @@
 #include <iostream>
 #include <assert.h>
 #include "linearContainer.hpp"
+#ifndef QUEUE_HPP
+#define QUEUE_HPP
 
 template<class T>
 class Queue : public LinearContainer<T> {
@@ -59,3 +61,4 @@ void Queue<T>::copy() {
   }
   this -> start = newContainer;
 }
+#endif // QUEUE_HPP
