@@ -1,5 +1,7 @@
 #include <iostream>
 #include <assert.h>
+#ifndef LINEARCONTAINER_HPP
+#define LINEARCONTAINER_HPP
 
 template<class T>
 struct containerElem {
@@ -109,3 +111,4 @@ void LinearContainer<T>::del(){
 }
 
 
+#endif // LINEARCONTAINER_HPP

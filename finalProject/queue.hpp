@@ -1,5 +1,6 @@
 #include <iostream>
 #include <assert.h>
+#include "linearContainer.hpp"
 
 template<class T>
 class Queue : public LinearContainer<T> {
