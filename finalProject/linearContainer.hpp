@@ -1,5 +1,6 @@
 #include <iostream>
 #include <assert.h>
+#include "debug.hpp"
 #ifndef LINEARCONTAINER_HPP
 #define LINEARCONTAINER_HPP
 
@@ -35,6 +36,8 @@ class LinearContainer {
 
 template <class T>
 LinearContainer<T>::LinearContainer(int num) {
+  log("initalizer");
+  log(num);
   maxSize = num;
   start = 0;
   currentCount = 0;

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <assert.h>
+#include "debug.hpp"
 #include "linearContainer.hpp"
 #ifndef QUEUE_HPP
 #define QUEUE_HPP
@@ -39,6 +40,8 @@ containerElem<T>* Queue<T>::pop() {
   containerElem<T>* last = this->start;
   this->start = last->next;
   this->currentCount--;
+  log("count");
+  log(this->currentCount);
   return last;
 }
 

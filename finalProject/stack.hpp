@@ -1,5 +1,6 @@
 #include <iostream>
 #include <assert.h>
+#include "debug.hpp"
 #include "linearContainer.hpp"
 #ifndef STACK_HPP
 #define STACK_HPP
@@ -29,6 +30,8 @@ void Stack<T>::push(T c) {
     last -> next = temp;
   }
   this->currentCount++;
+  log("count");
+  log(this->currentCount);
 }
 
 template<class T>
